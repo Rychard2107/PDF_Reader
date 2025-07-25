@@ -18,7 +18,7 @@ export async function findPagesByPDFId(id: number) {
     return await pageRepo.find({ where: { pdfFile: { id } } });
 }
 
-export async function deletePDF(id: number) {
+export async function deletePDFservice(id: number) {
     await pageRepo.delete({ pdfFile: { id } });
     await pdfRepo.delete(id);
 }

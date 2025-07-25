@@ -29,8 +29,8 @@ export async function getSpecificPDFPage(req:Request, res: Response) {
 }
   
 export async function deletePDF(req: Request, res: Response) {
-    await pdfService.deletePDF(+req.params.id);
-    res.status(204).send();
+    await pdfService.deletePDFservice(+req.params.id);
+    res.status(204).send("<p>You catched ${req.params.id}.</p>");
 }
 
 export const getAllPDFFiles = async (req: Request, res: Response) => {
@@ -38,7 +38,7 @@ export const getAllPDFFiles = async (req: Request, res: Response) => {
         const pdfs = await pdfService.getAllPDFs();
         res.json(pdfs);
     } catch (error) {
-        res.status(500).json({ message: "Erro ao buscar os PDFs." });
+        res.status(500).json({ message: "Error on search pdfs." });
     }
 };
   
