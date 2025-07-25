@@ -24,5 +24,27 @@ services:
       - "5672:5672"
       - "15672:15672"   # painel web
 
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      PORT: 3000
+    depends_on:
+      - mysql
+      - rabbitmq
+    volumes:
+      - ./backend:/app
+    command: npm run dev
+
 volumes:
   mysql_data:
